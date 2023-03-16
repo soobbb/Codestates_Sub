@@ -23,6 +23,7 @@ class Car{
   drive(){
     console.log(this.name + " is driving");
   }
+  
 }
 
 let mini = new Car("bmw", "mini", "white","length");

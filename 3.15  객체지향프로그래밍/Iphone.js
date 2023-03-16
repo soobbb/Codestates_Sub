@@ -14,6 +14,6 @@ class Iphone{
 let Iphone14 = new Iphone("black", "Iphone14", "1.4");  // 인스탄스
 console.log(Iphone14.color);  // 속성
 Iphone14.camera(); // 메서드
-
-console.log(Iphone.prototype === Iphone14.__proto__);
-
+Iphone14.__proto__;
+Iphone.prototype;
+Iphone.prototype === Iphone14.__proto__;
