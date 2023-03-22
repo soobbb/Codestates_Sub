@@ -20,9 +20,9 @@
 // }, 1000);
 // clearInterval(timer);
 
-// let promise = new Promise((resolve, reject) => {  // 변수에 new Promise 변수를 넣어 준 거고
-//   resolve("성공132");
-
+// let promise = new Promise((resolve, reject) => {
+//   // 변수에 new Promise 변수를 넣어 준 거고
+//   resolve("성공12");
 //   reject("실패");
 // });
 // promise
@@ -47,31 +47,30 @@
 //   });
 
 // // 터미널에 `node index.js`를 입력하여 비동기 코드가 작동하는 순서를 확인해보세요.
-const printString = (string) => { // 변수에 new Promise 함수를 넣어 준 거고
-  return new Promise((resolve, reject) => {
+const printString = (string) => {
     setTimeout(() => {
-      resolve()
       console.log(string);
-    }, Math.floor(Math.random() * 100) + 1); // 1~100 사이 정수
-  });
+    }, Math.floor(Math.random() * 100) + 1);
 };
+// error 
+const printAll = () => {
+  printString("A");
+  printString("B");
+  printString("C");
 
-const printAll = async() => {
-  // printString('A')
-  //   .then(() => {
-  //     return printString('B');
-  //   })
-  //   .then(() => {
-  //     return printString('C');
-  //   })
-  //   .catch(() => {
-  //     return printString(1);
-  //   })
-  await printString("A")
-  await printString("B")
-  await printString("C")
-  await printString(123)
+  // throw new Error("비상! 에러!")
 };
+// const pringAll = () => {
+//   printString("A").then((value)=>{
+//     console.log(value);
+//     printString(123).then((value)=>{
+//       console.log(value);
+//       printString("C").then((value)=>{
+//         console.log(value);
+//       })
+//     })
+//   })
+// }
 printAll();
 
 // console.log(
@@ -108,7 +107,7 @@ printAll();
 //   .then((value) => console.log(value))
 //   .catch((err) => console.log(err));
 
-// 2-1. Promise.all()의 에러 발생시 동작방식
+// // 2-1. Promise.all()의 에러 발생시 동작방식
 // Promise.all([
 //   new Promise(
 //     (resolve, reject) => setTimeout(() => reject(new Error("에러1"))),
@@ -126,8 +125,17 @@ printAll();
 //   .then((value) => console.log(value))
 //   .catch((err) => console.log(err));
 
-async function f() {
-  return 1;
+// async function f() {
+//   return 1;
+// }
+
+
+function handleClick() {
+  console.log('버튼에 비동기 이벤트를 넣는 방법');
 }
 
-f().then(alert); // 1
+let button = document.createElement('button');
+button.textContent = 'button';
+document.body.append(button);
+
+button.addEventListener('click', handleClick());

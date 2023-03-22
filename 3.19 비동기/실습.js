@@ -17,9 +17,8 @@ const printAll = () => {
       return printString('C');
     });
 };
-
 printAll();
-
 console.log(
   `아래와 같이 Promise를 통해 비동기 코드의 순서를 제어할 수 있습니다!`
 );
+
