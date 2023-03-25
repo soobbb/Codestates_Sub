@@ -33,3 +33,20 @@ const printAll = async () => {
   await printStringAsync2("C");
 };
 printAll();
+
+
+
+
+const A = (a) => {
+  let b = a * 2;
+  console.log(b);
+  return b;
+}
+
+const A1 = (a) => {
+  let b = a * 2;
+  console.log(b);
+}
+
+A(2)
+A1(3);

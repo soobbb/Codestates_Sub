@@ -19,12 +19,12 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Routes>
-          <Route path="/" element={<Home />} /> 
+        <RRoute path="/" element={<Home />} /> 
 					{/* 경로는 path로 컴포넌트는 element로 연결해 줍니다. */}
           <Route path="/mypage" element={<MyPage />} /> 
           <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
+        </Routes>outes>
+          <
       </div>
     </BrowserRouter>
   );
