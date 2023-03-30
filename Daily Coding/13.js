@@ -12,3 +12,6 @@ function readVertically(arr) {
   }
   return result
 }
+
+
+
