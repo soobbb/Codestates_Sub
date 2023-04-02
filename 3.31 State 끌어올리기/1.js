@@ -1,34 +1,80 @@
 import React, { useState } from "react";
+import "./styles.css";
 
-export default function ParentComponent() {
-  const [value, setValue] = useState("날 바꿔줘!");
+const currentUser = "김코딩";
 
-  const handleChangeValue = () => {
-    setValue("보여줄게 완전히 달라진 값");
-  };
-  // 자식 컴포넌트에 부모의 상태를 바꿀 수 있는 함수를 전달
+function Twittler() {
+  const [tweets, setTweets] = useState([
+    {
+      uuid: 1,
+      writer: "김코딩",
+      date: "2020-10-10",
+      content: "안녕 리액트",
+    },
+    {
+      uuid: 2,
+      writer: "박해커",
+      date: "2020-10-12",
+      content: "좋아 코드스테이츠!",
+    },
+  ]);
+
+  const addNewTweet = (newTweet) => {
+    setTweets([...tweets, newTweet]);
+  }; // 이 상태 변경 함수가 NewTweetForm에 의해 실행되어야 합니다.
+
   return (
     <div>
-      <div>값은 {value} 입니다</div>
-      <ChildComponent
-        handleChangeValue={handleChangeValue}
-        setValue={setValue}
-      />
+      <div>작성자: {currentUser}</div>
+      <NewTweetForm onButtonClick={addNewTweet} />
+      <ul id="tweets">
+        {tweets.map((t) => (
+          <SingleTweet key={t.uuid} writer={t.writer} date={t.date}>
+            {t.content}
+          </SingleTweet>
+        ))}
+      </ul>
     </div>
   );
 }
 
-function ChildComponent({ handleChangeValue, setValue }) {
-  const [text, setText] = useState("");
-  const handleClick = () => {
-    // 이 버튼을 눌러서 부모의 상태를 바꿀 순 없을까?
-    setValue(text);
+function NewTweetForm({ onButtonClick }) {
+  const [newTweetContent, setNewTweetContent] = useState("");
+
+  const onTextChange = (e) => {
+    setNewTweetContent(e.target.value);
+  };
+
+  const onClickSubmit = () => {
+    let newTweet = {
+      uuid: Math.floor(Math.random() * 10000),
+      writer: currentUser,
+      date: new Date().toISOString().substring(0, 10),
+      content: newTweetContent,
+    };
+    // TDOO: 여기서 newTweet이 addNewTweet에 전달되어야 합니다.
+    onButtonClick(newTweet);
+    setNewTweetContent("");
   };
 
   return (
-    <>
-      <input value={text} onChange={(e) => setText(e.target.value)} />
-      <button onClick={handleClick}>값 변경</button>
-    </>
+    <div id="writing-area">
+      <textarea id="new-tweet-content" onChange={onTextChange}></textarea>
+      <button id="submit-new-tweet" onClick={onClickSubmit}>
+        새 글 쓰기
+      </button>
+    </div>
   );
 }
+
+function SingleTweet({ writer, date, children }) {
+  return (
+    <li className="tweet">
+      <div className="writer">{writer}</div>
+      <div className="date">{date}</div>
+      <div>{children}</div>
+    </li>
+  );
+}
+
+export default Twittler;
